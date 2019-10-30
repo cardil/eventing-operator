@@ -35,8 +35,8 @@ kind: Namespace
 metadata:
  name: knative-eventing
 ---
-apiVersion: operator.knative.dev/v1alpha1
-kind: Eventing
+apiVersion: eventing.knative.dev/v1alpha1
+kind: KnativeEventing
 metadata:
   name: knative-eventing
   namespace: knative-eventing
@@ -46,23 +46,25 @@ EOF
 Please refer to [Building the Operator Image](#building-the-operator-image) to
 build your own image.
 
-## The `Eventing` Custom Resource
+## The `KnativeEventing` Custom Resource
 
 The installation of Knative Eventing is triggered by the creation of a
-`Eventing` custom resource (CR) as defined by
+`KnativeEventing` custom resource (CR) as defined by
 [this CRD](config/300-eventing-v1alpha1-knativeeventing-crd.yaml). The operator
 will deploy Knative Eventing in the same namespace containing the
-`Eventing` CR, and this CR will trigger the installation, reconfiguration,
+`KnativeEventing` CR, and this CR will trigger the installation, reconfiguration,
 or removal of the knative eventing resources.
 
 The following are all equivalent:
 
 ```
-kubectl get eventings.operator.knative.dev -oyaml
-kubectl get eventing -oyaml
+kubectl get knativeeventings.eventing.knative.dev -oyaml
+kubectl get knativeeventings -oyaml
+kubectl get knativeeventing -oyaml
+kubectl get ke -oyaml
 ```
 
-To uninstall Knative Eventing, simply delete the `Eventing` resource.
+To uninstall Knative Eventing, simply delete the `KnativeEventing` resource.
 
 ```
 kubectl delete ke --all

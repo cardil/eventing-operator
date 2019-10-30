@@ -31,15 +31,15 @@ func Resource(resource string) schema.GroupResource {
 // scheme.
 func addKnownTypes(s *runtime.Scheme) error {
 	s.AddKnownTypes(SchemeGroupVersion,
-		&Eventing{},
-		&EventingList{})
+		&KnativeEventing{},
+		&KnativeEventingList{})
 	metav1.AddToGroupVersion(s, SchemeGroupVersion)
 	return nil
 }
 
 var (
 	// SchemeGroupVersion is group version used to register these objects
-	SchemeGroupVersion = schema.GroupVersion{Group: "operator.knative.dev", Version: "v1alpha1"}
+	SchemeGroupVersion = schema.GroupVersion{Group: "eventing.knative.dev", Version: "v1alpha1"}
 
 	// SchemeBuilder is used to add go types to the GroupVersionKind scheme
 	SchemeBuilder = runtime.NewSchemeBuilder(addKnownTypes)

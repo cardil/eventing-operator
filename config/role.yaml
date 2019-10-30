@@ -47,7 +47,7 @@ rules:
   verbs:
   - update
 - apiGroups:
-  - operator.knative.dev
+  - eventing.knative.dev
   resources:
   - '*'
   verbs:
