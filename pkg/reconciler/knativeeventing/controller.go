@@ -27,7 +27,7 @@ import (
 	"knative.dev/pkg/configmap"
 	"knative.dev/pkg/controller"
 	"knative.dev/eventing-operator/pkg/apis/eventing/v1alpha1"
-	knativeEventinginformer "knative.dev/eventing-operator/pkg/client/injection/informers/eventing/v1alpha1/eventing"
+	knativeEventinginformer "knative.dev/eventing-operator/pkg/client/injection/informers/eventing/v1alpha1/knativeeventing"
 	rbase "knative.dev/eventing-operator/pkg/reconciler"
 )
 

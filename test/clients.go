@@ -30,7 +30,7 @@ import (
 type Clients struct {
 	KubeClient *test.KubeClient
 	Dynamic    dynamic.Interface
-	Eventing   eventingv1alpha1.OperatorV1alpha1Interface
+	Eventing   eventingv1alpha1.EventingV1alpha1Interface
 	Config     *rest.Config
 }
 
@@ -77,18 +77,18 @@ func buildClientConfig(kubeConfigPath string, clusterName string) (*rest.Config,
 		&overrides).ClientConfig()
 }
 
-func newKnativeEventingAlphaClients(cfg *rest.Config) (eventingv1alpha1.OperatorV1alpha1Interface, error) {
+func newKnativeEventingAlphaClients(cfg *rest.Config) (eventingv1alpha1.EventingV1alpha1Interface, error) {
 	cs, err := versioned.NewForConfig(cfg)
 	if err != nil {
 		return nil, err
 	}
-	return cs.OperatorV1alpha1(), nil
+	return cs.EventingV1alpha1(), nil
 }
 
-func (c *Clients) KnativeEventing() eventingv1alpha1.EventingInterface {
-	return c.Eventing.Eventings(EventingOperatorNamespace)
+func (c *Clients) KnativeEventing() eventingv1alpha1.KnativeEventingInterface {
+	return c.Eventing.KnativeEventings(EventingOperatorNamespace)
 }
 
-func (c *Clients) KnativeEventingAll() eventingv1alpha1.EventingInterface {
-	return c.Eventing.Eventings(metav1.NamespaceAll)
+func (c *Clients) KnativeEventingAll() eventingv1alpha1.KnativeEventingInterface {
+	return c.Eventing.KnativeEventings(metav1.NamespaceAll)
 }

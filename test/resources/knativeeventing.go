@@ -44,7 +44,7 @@ const (
 // WaitForKnativeEventingState polls the status of the KnativeServing called name
 // from client every `interval` until `inState` returns `true` indicating it
 // is done, returns an error or timeout.
-func WaitForKnativeEventingState(clients eventingv1alpha1.EventingInterface, name string,
+func WaitForKnativeEventingState(clients eventingv1alpha1.KnativeEventingInterface, name string,
 	inState func(s *v1alpha1.KnativeEventing, err error) (bool, error)) (*v1alpha1.KnativeEventing, error) {
 	span := logging.GetEmitableSpan(context.Background(), fmt.Sprintf("WaitForKnativeEventingState/%s/%s", name, "KnativeServingIsReady"))
 	defer span.End()
@@ -62,7 +62,7 @@ func WaitForKnativeEventingState(clients eventingv1alpha1.EventingInterface, nam
 }
 
 // CreateKnativeEventing creates a KnativeServing with the name names.KnativeServing under the namespace names.Namespace.
-func CreateKnativeEventing(clients eventingv1alpha1.EventingInterface, names test.ResourceNames) (*v1alpha1.KnativeEventing, error) {
+func CreateKnativeEventing(clients eventingv1alpha1.KnativeEventingInterface, names test.ResourceNames) (*v1alpha1.KnativeEventing, error) {
 	ks := &v1alpha1.KnativeEventing{
 		ObjectMeta: metav1.ObjectMeta{
 			Name:      names.KnativeEventing,
